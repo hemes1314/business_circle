@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<properties>
+		<property name="LOG_HOME">logs</property>
+		<property name="SERVICE_NAME">business-circle</property>
+	</properties>
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss:SSS}	%p [%t][%c{1}] - %m%n" />
+		</Console>
+
+		<RollingFile name="RollingFile" fileName="${LOG_HOME}/${SERVICE_NAME}.log" filePattern="${LOG_HOME}/$${date:yyyy-MM}/beetle-%d{yyyy-MM-dd-HH}-%i.log.gz">
+			<PatternLayout>
+				<Pattern>%d{yyyy-MM-dd HH:mm:ss:SSS} %p [%t][%c{1}] - %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+		</RollingFile>
+	</Appenders>
+
+	<Loggers>
+		<Root level="error">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingFile" />
+		</Root>
+		<!-- additivity="false"避免日志输出两遍 -->
+		<Logger name="com.ishansong.tools.businessCircle" level="info" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingFile" />
+		</Logger>
+	</Loggers>
+</Configuration>
