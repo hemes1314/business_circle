@@ -13,7 +13,7 @@ public class ExcelUtils {
 	/**
 	 * 获取单元格的值
 	 *
-	 * @author qiunan 2016年4月22日
+	 * @author wubin 2017年10月10日
 	 * @param cell
 	 * @return
 	 */
